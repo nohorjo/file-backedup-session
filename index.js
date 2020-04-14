@@ -30,7 +30,7 @@ module.exports = function(session) {
         };
 
         if (this.options.setupBackup) {
-            this.options.connection.setupBackup().then(() => {
+            this.options.setupBackup().then(() => {
                 this.options.log('create table');
                 loadSessions();
             }).catch(err => this.options.log.error(err));
