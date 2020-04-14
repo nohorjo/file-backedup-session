@@ -13,7 +13,6 @@
   "keywords": [
     "express",
     "session",
-    "postgres",
     "filestore"
   ],
   "author": "Muhammed Haque",
