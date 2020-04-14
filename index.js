@@ -10,7 +10,6 @@ module.exports = function(session) {
     log.debug = debug('file-backedup-session:debug');
 
     function FileBackedUpSession(options) {
-        this.options.log('init');
         this.options = {
             dir: 'sessions',
             backupInterval: 60000,
@@ -19,6 +18,7 @@ module.exports = function(session) {
             log: log,
             ...options
         };
+        this.options.log('init');
         this.options.updatesPath = path.join(this.options.dir, 'updates');
         fs.mkdirs(this.options.dir);
 
