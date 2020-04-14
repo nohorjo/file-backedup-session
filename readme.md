@@ -1,5 +1,5 @@
 # file-backedup-session
-Express session store using the file system and backing up to a Postgres database
+Express session store using the file system and backing up to another source
 
 # Usage
 ```javascript
