@@ -17,8 +17,8 @@ app.use(session({
     store: new FileBackedUpSession({
         // required
         getSessions: getSessions, // () => Promise<{session_id: string, data: string}[]> // async function returning a sessions
-        deleteSessions: deleteSessions, // [id: string] => Promise // async function that deletes the ids provided
-        insertOrUpdateSession: insertOrUpdateSession, // (id: string, expires: number, data: string) => Promise // async function to inset or update session
+        deleteSessions: deleteSessions, // ([id: string]) => Promise // async function that deletes the ids provided
+        insertOrUpdateSessions: insertOrUpdateSessions, // ({id: string, expires: number, data: string}[]) => Promise // async function to insert or update sessions
         // optional
         setupBackup: setupBackup, // async function that sets up backup
         dir: 'sessions', // dir path to keep session files

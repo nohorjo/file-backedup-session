@@ -176,12 +176,19 @@ module.exports = function(session) {
                     this.options.log.error(err);
                     throw err;
                 }
-                updates.mod.filter(id => sessions[id]).forEach(id => {
-                    const session = sessions[id];
-                    delete session.ORIGINAL;
-                    const expires = ((new Date(session.cookie.expires) / 1000) | 0).toString();
-                    this.options.insertOrUpdateSession(id, expires, JSON.stringify(session)).catch(err => this.options.log.error(err));
-                });
+                const mod = updates.mod.filter(id => sessions[id]);
+                if (mod.length) {
+                    this.options.insertOrUpdateSessions(mod.map(id => {
+                        const session = sessions[id];
+                        delete session.ORIGINAL;
+                        const expires = ((new Date(session.cookie.expires) / 1000) | 0).toString();
+                        return {
+                            id,
+                            expires,
+                            data: JSON.stringify(session),
+                        };
+                    })).catch(err => this.options.log.error(err));
+                }
             });
         }
     }
